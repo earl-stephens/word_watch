@@ -17,10 +17,24 @@
         <article class="top-word">
           <h3>Top word from Word Watch API: </h3>
         </article>
+        <div>
+          <button id="fetchWord">Fetch Word</button>
+        </div>
+        <div id="response"></div>
         <article class="word-count" tabindex="0">
         </article>
       </section>
     </main>
+    <script>
+      document.getElementById('fetchWord').addEventListener('click', fetchTheWord);
+      function fetchTheWord(){
+        fetch('https://wordwatch-api.herokuapp.com/api/v1/top_word')
+        .then(response => response.json())
+        .then(words => {
+          let word2 = JSON.stringify(words.word);
+          document.getElementById("response").innerHTML = word2;
+        })
+      }
+    </script>
   </body>
 </html>
-
